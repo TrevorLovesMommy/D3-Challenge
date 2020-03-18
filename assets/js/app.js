@@ -4,14 +4,14 @@
 //in your broswer, url will be localhost:8000
 
 //define svg area dimensions
-var svgWidth = 960;
-var svgHeight = 500;
+var svgWidth = 800;
+var svgHeight = 600;
 
 //define the chart's margins as an object
 var margin = {
     top: 20,
     right: 40,
-    bottom: 150,
+    bottom: 100,
     left: 100
 }
 
