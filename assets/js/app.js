@@ -87,14 +87,25 @@ d3.csv("assets/data/data.csv").then (function(censusData){
     .attr("cy", d => yLinearScale(d.healthcareLow))
     .attr("r", "15")
     .attr("fill", "blue")
-    .attr("opacity", ".5")
-    //append text
+    .attr("opacity", ".5");
+
+
+    //append text to create html code similar to <text class="state" x="200" y="200" etc... > d.state </text>
+    chartGroup.selectAll("text.state")
+    .data(censusData)
+    .enter()
+    //create html elementt of text
     .append("text")
+    //each text as html class elemnt of state
+    .attr("class", "state")
+    .attr("x", d => xLinearScale(d.poverty) -10)
+    .attr("y", d => yLinearScale(d.healthcareLow) + 5)
+    .attr("font-size", "10px")
+    .attr("font-family", "Arial")
+    .attr("stroke", "black")
     .text(function(d) {
-        return d.state;});
-
-
-    // .attr("dy", ".3em");
+        return d.abbr;
+    });
 
     // Create axes labels
     chartGroup.append("text")
@@ -109,8 +120,6 @@ d3.csv("assets/data/data.csv").then (function(censusData){
       .attr("transform", `translate(${chartWidth / 2}, ${chartHeight + margin.top + 30})`)
       .attr("class", "axisText")
       .text("In Poverty (%)");
-
-
 
 }).catch(function(error) {
  console.log(error);
